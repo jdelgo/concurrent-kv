@@ -10,6 +10,7 @@ namespace concurrent_kv {
 class GlobalLockKV {
 
   public:
+    GlobalLockKV(uint64_t expected_items) { map_.reserve(expected_items * 2); }
     void put(uint64_t key, uint64_t value) {
         std::scoped_lock lck{m_};
         map_[key] = value;
