@@ -4,7 +4,7 @@
 
 namespace concurrent_kv {
 
-template <class Store> void demo(Store &store) {
+template <typename Store> void demo(Store &store) {
     store.put(1, 111);
 
     store.put(2, 222);
