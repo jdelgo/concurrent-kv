@@ -10,6 +10,7 @@ namespace concurrent_kv {
 
 class ShardedKV {
   public:
+    ShardedKV(uint64_t sz) : shards_{sz}, m_{sz} {}
     void put(uint64_t key, uint64_t value) {
         uint64_t idx = get_shard_idx(key);
         std::scoped_lock lck{m_[idx]};
@@ -34,7 +35,6 @@ class ShardedKV {
     }
 
   private:
-    ShardedKV(uint64_t sz) : shards_{sz}, m_{sz} {}
     std::vector<std::unordered_map<uint64_t, uint64_t>> shards_;
     std::vector<std::mutex> m_;
     uint64_t get_shard_idx(uint64_t key) {
