@@ -62,7 +62,7 @@ BenchResult run_read_heavy_bench(Store &store, const BenchConfig &cfg) {
 
     for (int t = 0; t < cfg.threads; ++t) {
         workers.emplace_back([&, t](std::stop_token) {
-            std::mt19937_64 rng(0xC0FFEEULL + (uint64_t)t * 1337ULL);
+            std::mt19937_64 rng(0xBEEFULL + (uint64_t)t * 12345ULL);
             std::uniform_int_distribution<uint64_t> key_dist(0, cfg.keys_range -
                                                                     1);
             std::uniform_int_distribution<int> pct(1, 100);
